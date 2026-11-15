@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>BENTO | Creative Explosion</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Be+Vietnam+Pro:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            secondary: "#ae2f34",
+            "surface-bright": "#faf8ff",
+            "primary-fixed-dim": "#d2bbff",
+            "surface-container-lowest": "#ffffff",
+            "inverse-surface": "#283044",
+            "surface-variant": "#dae2fd",
+            "on-primary": "#ffffff",
+            primary: "#630ed4",
+            "on-background": "#131b2e",
+            "on-error": "#ffffff",
+            "primary-fixed": "#eaddff",
+            "on-tertiary-fixed-variant": "#004e5c",
+            "on-surface-variant": "#4a4455",
+            "on-primary-fixed": "#25005a",
+            "inverse-on-surface": "#eef0ff",
+            "on-error-container": "#93000a",
+            "surface-container-low": "#f2f3ff",
+            "on-secondary": "#ffffff",
+            "on-tertiary-container": "#b7efff",
+            "surface-dim": "#d2d9f4",
+            "secondary-container": "#ff6b6b",
+            "on-surface": "#131b2e",
+            "on-secondary-fixed": "#410006",
+            tertiary: "#005766",
+            background: "#faf8ff",
+            "tertiary-container": "#007184",
+            "tertiary-fixed-dim": "#4cd7f6",
+            "on-tertiary-fixed": "#001f26",
+            "on-primary-fixed-variant": "#5a00c6",
+            "surface-container-highest": "#dae2fd",
+            "error-container": "#ffdad6",
+            surface: "#faf8ff",
+            "surface-container": "#eaedff",
+            "on-tertiary": "#ffffff",
+            error: "#ba1a1a",
+            outline: "#7b7487",
+            "secondary-fixed-dim": "#ffb3b0",
+            "on-secondary-container": "#6d0010",
+            "outline-variant": "#ccc3d8",
+            "inverse-primary": "#d2bbff",
+            "secondary-fixed": "#ffdad8",
+            "surface-container-high": "#e2e7ff",
+            "tertiary-fixed": "#acedff",
+            "primary-container": "#7c3aed",
+            "surface-tint": "#732ee4"
+          },
+          borderRadius: {
+            DEFAULT: "0.25rem",
+            lg: "0.5rem",
+            xl: "0.75rem",
+            full: "9999px"
+          },
+          spacing: {
+            gutter: "24px",
+            "container-max": "1280px",
+            unit: "8px",
+            "margin-mobile": "16px",
+            "margin-desktop": "40px"
+          },
+          fontFamily: {
+            "headline-lg-mobile": ["Montserrat"],
+            "label-bold": ["Montserrat"],
+            "headline-lg": ["Montserrat"],
+            "display-lg": ["Montserrat"],
+            "display-lg-mobile": ["Montserrat"],
+            "body-lg": ["Be Vietnam Pro"],
+            "body-md": ["Be Vietnam Pro"]
+          },
+          fontSize: {
+            "headline-lg-mobile": ["28px", { lineHeight: "1.2", fontWeight: "700" }],
+            "label-bold": ["14px", { lineHeight: "1", letterSpacing: "0.05em", fontWeight: "700" }],
+            "headline-lg": ["32px", { lineHeight: "1.2", fontWeight: "700" }],
+            "display-lg": ["56px", { lineHeight: "1.1", letterSpacing: "-0.02em", fontWeight: "800" }],
+            "display-lg-mobile": ["40px", { lineHeight: "1.1", letterSpacing: "-0.02em", fontWeight: "800" }],
+            "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
+            "body-md": ["16px", { lineHeight: "1.6", fontWeight: "400" }]
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-primary selection:text-white">
+  <!-- TopNavBar -->
+  <nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b-[0.5px] border-white/20 shadow-[0_8px_32px_rgba(99,14,212,0.15)]">
+    <div class="flex justify-between items-center px-4 md:px-10 py-4 max-w-container-max mx-auto">
+      <span class="font-display-lg text-headline-lg-mobile md:text-headline-lg tracking-tighter text-primary">BENTO</span>
+      <!-- Desktop nav -->
+      <div class="hidden md:flex items-center gap-8">
+        <a class="text-primary border-b-2 border-primary pb-1 font-label-bold text-label-bold hover:scale-105 transition-transform duration-200" href="#work">Work</a>
+        <a class="text-on-surface-variant hover:text-primary transition-colors font-label-bold text-label-bold hover:scale-105 transition-transform duration-200" href="#about">About</a>
+        <a class="text-on-surface-variant hover:text-primary transition-colors font-label-bold text-label-bold hover:scale-105 transition-transform duration-200" href="#contact">Contact</a>
+      </div>
+      <div class="flex items-center gap-4">
+        <button class="bg-primary-container text-on-primary font-label-bold text-label-bold px-6 py-2 rounded-full hover:scale-105 active:scale-95 transition-all shadow-lg hidden md:inline-block">Let's Chat</button>
+        <!-- Mobile menu toggle -->
+        <button id="menuToggle" class="md:hidden text-primary p-2 rounded-full hover:bg-primary/10 transition-colors" aria-label="Toggle menu">
+          <span class="material-symbols-outlined text-3xl">menu</span>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile menu -->
+    <div id="mobileMenu" class="mobile-menu md:hidden">
+      <a class="text-primary font-label-bold text-label-bold py-2 border-b border-outline-variant/30" href="#work">Work</a>
+      <a class="text-on-surface-variant font-label-bold text-label-bold py-2 border-b border-outline-variant/30" href="#about">About</a>
+      <a class="text-on-surface-variant font-label-bold text-label-bold py-2 border-b border-outline-variant/30" href="#contact">Contact</a>
+      <button class="bg-primary-container text-on-primary font-label-bold text-label-bold px-6 py-3 rounded-full hover:scale-105 active:scale-95 transition-all shadow-lg w-full mt-2">Let's Chat</button>
+    </div>
+  </nav>
+
+  <main class="overflow-hidden">
+    <!-- Hero Section (unchanged) -->
+    <section class="relative pt-24 min-h-[80vh] flex items-center px-4 md:px-10 max-w-container-max mx-auto py-12">
+      <div class="absolute top-1/4 -left-20 w-64 h-64 bg-primary/20 rounded-full blur-3xl animate-pulse"></div>
+      <div class="absolute bottom-1/4 -right-20 w-80 h-80 bg-secondary/20 rounded-full blur-3xl animate-pulse delay-700"></div>
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full kinetic-gradient opacity-5 pointer-events-none"></div>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
+        <div class="space-y-8">
+          <h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg leading-none">
+            <span class="block">CREATIVE</span>
+            <span class="gradient-text block">EXPLOSION</span>
+          </h1>
+          <p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg">We blend high-vibrancy aesthetics with precision engineering to create digital experiences that spark joy and drive momentum.</p>
+          <div class="flex flex-wrap gap-4">
+            <a class="px-8 py-4 bg-primary text-white font-label-bold text-label-bold rounded-full shadow-[0_4px_20px_rgba(99,14,212,0.3)] hover:translate-y-[-4px] transition-all" href="#work">View Projects</a>
+            <a class="px-8 py-4 border-2 border-primary text-primary font-label-bold text-label-bold rounded-full hover:bg-primary/5 transition-all" href="#about">My Story</a>
+          </div>
+        </div>
+        <div class="relative">
+          <div class="absolute -top-10 -right-10 w-24 h-24 kinetic-gradient rounded-2xl rotate-12 floating z-0"></div>
+          <div class="absolute bottom-0 -left-10 w-32 h-32 bg-tertiary-container rounded-full floating delay-1000 z-0 opacity-50"></div>
+          <div class="relative z-10 rounded-full overflow-hidden shadow-2xl border-4 border-white/50">
+            <img alt="Creative Professional Portrait" class="w-full h-auto object-cover aspect-[1]" src="images/banner.jpg" />
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Skills Section (unchanged) -->
+    <section class="py-24 bg-surface-container-low" id="about">
+      <div class="px-4 md:px-10 max-w-container-max mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg mb-4">Core Expertise</h2>
+          <p class="text-on-surface-variant max-w-2xl mx-auto">Mastering the intersection of art and utility to deliver world-class digital products.</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div class="glass-card p-8 rounded-[2rem] hover:translate-y-[-8px] transition-all group">
+            <div class="w-12 h-12 rounded-[2rem] bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
+              <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">brush</span>
+            </div>
+            <h3 class="font-headline-lg-mobile text-xl mb-3">Visual Identity</h3>
+            <p class="text-on-surface-variant font-body-md text-sm">Bold branding that captures essence and commands attention across all platforms.</p>
+          </div>
+          <div class="glass-card p-8 rounded-[2rem] hover:translate-y-[-8px] transition-all group">
+            <div class="w-12 h-12 rounded-[2rem] bg-secondary/10 flex items-center justify-center text-secondary mb-6 group-hover:scale-110 transition-transform">
+              <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">fluid_med</span>
+            </div>
+            <h3 class="font-headline-lg-mobile text-xl mb-3">UI/UX Motion</h3>
+            <p class="text-on-surface-variant font-body-md text-sm">Kinetic interfaces that feel alive and respond to user intent with elegance.</p>
+          </div>
+          <div class="glass-card p-8 rounded-[2rem] hover:translate-y-[-8px] transition-all group">
+            <div class="w-12 h-12 rounded-[2rem] bg-tertiary/10 flex items-center justify-center text-tertiary mb-6 group-hover:scale-110 transition-transform">
+              <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">code</span>
+            </div>
+            <h3 class="font-headline-lg-mobile text-xl mb-3">Interaction</h3>
+            <p class="text-on-surface-variant font-body-md text-sm">Precise front-end logic that ensures designs perform as beautifully as they look.</p>
+          </div>
+          <div class="glass-card p-8 rounded-[2rem] hover:translate-y-[-8px] transition-all group">
+            <div class="w-12 h-12 rounded-[2rem] bg-surface-tint/10 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
+              <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">rocket_launch</span>
+            </div>
+            <h3 class="font-headline-lg-mobile text-xl mb-3">Product Strategy</h3>
+            <p class="text-on-surface-variant font-body-md text-sm">Strategic roadmaps that align creative vision with measurable business outcomes.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Hero Bento Grid (unchanged) -->
+    <section class="bg-surface-container-low grid grid-cols-1 md:grid-cols-4 grid-rows-auto gap-4 h-auto md:h-[700px] px-4 md:px-10 max-w-container-max mx-auto py-8">
+      <div class="md:col-span-2 md:row-span-2 rounded-[2rem] overflow-hidden bento-card glass-glow bg-surface-container relative group">
+        <img alt="Designer Portrait" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="images/banner-02.jpg" />
+        <div class="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/80 to-transparent text-white">
+          <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg font-bold mb-2">Creative Pulse.</h1>
+          <p class="font-body-lg text-body-lg opacity-90 max-w-md">Transforming abstract ideas into high-vibrancy digital experiences that move people.</p>
+        </div>
+      </div>
+      <div class="md:col-span-1 rounded-[2rem] p-6 bento-card bg-tertiary-container text-on-tertiary-container flex flex-col justify-between">
+        <div class="flex justify-between items-start">
+          <span class="material-symbols-outlined text-4xl" data-icon="rocket_launch">rocket_launch</span>
+          <span class="bg-white/20 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Live Now</span>
+        </div>
+        <div>
+          <h3 class="font-headline-lg-mobile text-headline-lg-mobile font-bold mb-1">Status</h3>
+          <p class="font-body-md text-body-md opacity-90">Open for high-impact collaborations.</p>
+        </div>
+      </div>
+      <div class="md:col-span-1 md:row-span-2 rounded-[2rem] overflow-hidden bento-card bg-secondary-container text-on-secondary-container flex flex-col group">
+        <div class="relative h-2/3 overflow-hidden">
+          <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A sleek, high-end mobile application interface with futuristic glassmorphism elements and vibrant purple and pink lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPYA7CW4g0YIsMYtKnmKZ1dtgYhXijLQjoys8M4rGOttdWTt4DBmjfP5VF53x39VsSalHUI8e87ZGj6DcyQFW4NKJ-y7l06lOpOtO8tqyKLRyIb-Xrj3exdM349IBg95wlcV2xhisOts0rhYX9Lrh68n533ZyPtTPNqSS-z-0k6ekLH1A5EUfez4JmKdEYg7WWvq7qXsT8DbIcGP2Jjs3QBkswUUA0M-nmp1q01fSUP9fUnCglXOK6Sg0UKbFDGzwUKz418GrvAw_8" />
+          <div class="absolute top-4 right-4 bg-white/20 backdrop-blur-md p-2 rounded-full">
+            <span class="material-symbols-outlined" data-icon="north_east">north_east</span>
+          </div>
+        </div>
+        <div class="p-6 flex-1 flex flex-col justify-center">
+          <span class="text-xs font-bold uppercase tracking-widest opacity-70 mb-2">Featured Work</span>
+          <h3 class="font-headline-lg-mobile text-headline-lg-mobile font-bold leading-tight">Nebula OS Interface</h3>
+        </div>
+      </div>
+      <div class="md:col-span-1 rounded-[2rem] p-6 bento-card bg-primary-container text-on-primary-container flex flex-col justify-between overflow-hidden relative">
+        <div class="z-10">
+          <h3 class="font-headline-lg-mobile text-headline-lg-mobile font-bold mb-4">Toolkit</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="bg-white/10 px-3 py-1.5 rounded-full text-[12px] font-bold border border-white/20 hover:bg-white/20 transition-colors cursor-default">Figma</span>
+            <span class="bg-white/10 px-3 py-1.5 rounded-full text-[12px] font-bold border border-white/20 hover:bg-white/20 transition-colors cursor-default">Tailwind</span>
+            <span class="bg-white/10 px-3 py-1.5 rounded-full text-[12px] font-bold border border-white/20 hover:bg-white/20 transition-colors cursor-default">React</span>
+            <span class="bg-white/10 px-3 py-1.5 rounded-full text-[12px] font-bold border border-white/20 hover:bg-white/20 transition-colors cursor-default">Motion</span>
+          </div>
+        </div>
+        <div class="absolute -right-4 -bottom-4 opacity-20 transform rotate-12">
+          <span class="material-symbols-outlined text-[120px]" data-icon="category">category</span>
+        </div>
+      </div>
+    </section>
+    <!-- Work Grid Section (unchanged) -->
+    <section class="space-y-6 pt-12 px-4 md:px-10 max-w-container-max mx-auto">
+      <div class="flex flex-wrap justify-between items-end gap-4">
+        <div>
+          <h2 class="font-display-lg text-display-lg-mobile md:text-headline-lg font-extrabold tracking-tight">Recent Archives</h2>
+          <p class="text-on-surface-variant font-body-md">A collection of digital artifacts and experiments.</p>
+        </div>
+        <button class="hidden md:block font-label-bold text-label-bold text-primary group">View Full Portfolio <span class="inline-block transition-transform group-hover:translate-x-1">→</span></button>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="md:row-span-2 bento-card rounded-[2rem] bg-surface-container overflow-hidden group">
+          <div class="h-full relative">
+            <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="Vintage 8-bit aesthetic computing setup" src="https://lh3.googleusercontent.com/aida-public/AB6AXuACuB31vxFDnq5VsNPPi6Hn1DGGk-o75ZJlptdTdfwsmZEduHxVy30x5liC3deMEF0FRMJ0p6lEVR7owoHwIW_5KOK4XnXWHC4g8RR8W7F1qxLcjadjUL-781x09iwkPi3r3vN4PUmzGxybzPbXIONVSxHvNbOlHL7VPMG_Nv51ynXG5iPARosyIj0uOkQPcCQYCqyaXy7drkleIqbhLsIdFOZz96-aHG6wLzIIpvM1nViyhggR3tnyzCH-0mqYatgzyTWsjbvzVgYv" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 p-8 flex flex-col justify-end">
+              <h4 class="text-white font-headline-lg font-bold">Cyber Retro Synth</h4>
+              <p class="text-white/70 text-sm mt-2">Brand Identity &amp; Web Experience</p>
+            </div>
+          </div>
+        </div>
+        <div class="md:col-span-2 bento-card rounded-[2rem] bg-surface-container overflow-hidden group h-[300px]">
+          <div class="flex h-full flex-col md:flex-row">
+            <div class="w-full md:w-1/2 p-8 flex flex-col justify-center">
+              <span class="text-primary font-bold text-xs tracking-widest mb-4">UX DESIGN</span>
+              <h4 class="font-headline-lg text-headline-lg-mobile font-extrabold mb-4">Flow Health Platform</h4>
+              <p class="text-on-surface-variant text-sm mb-6">Redefining health tracking with kinetic motion principles and approachable precision.</p>
+              <button class="w-fit bg-on-background text-background px-5 py-2 rounded-lg font-label-bold text-label-bold hover:bg-primary transition-colors">Explore Case</button>
+            </div>
+            <div class="w-full md:w-1/2 relative overflow-hidden">
+              <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Medical-grade digital interface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUR-yvmWZITDJRsRiUuYYSinlvtmzh4ieOEGKGn1tNNNOzbaQ_0gyZJeQY8Jx3-1zb1FcOkZDKEB9QXCrcBaZJIb_AxOVb_RUUgdJIYJpX2V8QYqs2a0EOx59JqG2N-z0HrguZQagFens4KMjIQwkDsWK0NLv-CHEmIyXtpAWbgoLUFFdKQ3naAzJS5Z4pYzCUu_d2-nxPCZ2Y6fFTf4ojkzDAjgQUR6z-eH3lwUtNsXjM14u6Fq8cuXgXO_7p4Qjrwsjdv8uI7OmF" />
+            </div>
+          </div>
+        </div>
+        <div class="bento-card rounded-[2rem] bg-gradient-to-br from-secondary/10 to-primary/10 p-1 group">
+          <div class="bg-surface w-full h-full rounded-[2rem] p-8 flex flex-col justify-between">
+            <div>
+              <span class="material-symbols-outlined text-secondary text-4xl mb-4" data-icon="draw">draw</span>
+              <h4 class="font-headline-lg-mobile text-headline-lg-mobile font-bold">Motion Assets</h4>
+              <p class="text-on-surface-variant text-sm mt-2">3D Abstract sculptures for digital products.</p>
+            </div>
+            <div class="flex -space-x-2">
+              <div class="w-10 h-10 rounded-full border-2 border-white bg-primary-fixed"></div>
+              <div class="w-10 h-10 rounded-full border-2 border-white bg-secondary-fixed"></div>
+              <div class="w-10 h-10 rounded-full border-2 border-white bg-tertiary-fixed"></div>
+            </div>
+          </div>
+        </div>
+        <div class="bento-card rounded-[2rem] bg-on-surface text-surface p-8 flex flex-col justify-center items-center text-center group">
+          <div class="mb-6 transform transition-transform group-hover:rotate-12 duration-500">
+            <span class="material-symbols-outlined text-6xl text-primary-fixed" data-icon="auto_awesome" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+          </div>
+          <h4 class="font-headline-lg-mobile font-bold">Lab Experiments</h4>
+          <p class="text-white/60 text-sm mt-2">Weekly creative coding challenges.</p>
+        </div>
+      </div>
+    </section>
+    <!-- Milestones Section (unchanged) -->
+    <section class="py-24 overflow-hidden px-4 md:px-10 max-w-container-max mx-auto">
+      <h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg mb-16 text-center">Our Journey</h2>
+      <div class="relative">
+        <div class="absolute left-8 md:left-1/2 top-0 bottom-0 w-1 kinetic-gradient opacity-30 -translate-x-1/2"></div>
+        <div class="relative flex flex-col md:flex-row items-center justify-between mb-24 w-full">
+          <div class="md:w-5/12 text-left md:text-right px-8 order-2 md:order-1">
+            <span class="text-primary font-bold text-lg mb-2 block">2021 — Genesis</span>
+            <h4 class="font-headline-lg-mobile text-xl mb-2">The Studio Launch</h4>
+            <p class="text-on-surface-variant">Founded with a vision to bring high-energy aesthetics to the corporate world.</p>
+          </div>
+          <div class="w-16 h-16 rounded-full bg-white border-4 border-primary z-10 flex items-center justify-center shadow-lg order-1 md:order-2 my-4 md:my-0">
+            <span class="material-symbols-outlined text-primary">stars</span>
+          </div>
+          <div class="md:w-5/12 order-3"></div>
+        </div>
+        <div class="relative flex flex-col md:flex-row items-center justify-between mb-24 w-full">
+          <div class="md:w-5/12 order-1"></div>
+          <div class="w-16 h-16 rounded-full bg-white border-4 border-secondary z-10 flex items-center justify-center shadow-lg order-1 md:order-2 my-4 md:my-0">
+            <span class="material-symbols-outlined text-secondary">workspace_premium</span>
+          </div>
+          <div class="md:w-5/12 text-left px-8 order-2 md:order-3">
+            <span class="text-secondary font-bold text-lg mb-2 block">2022 — Growth</span>
+            <h4 class="font-headline-lg-mobile text-xl mb-2">Global Partnerships</h4>
+            <p class="text-on-surface-variant">Expanding our footprint across 3 continents and 15 major digital products.</p>
+          </div>
+        </div>
+        <div class="relative flex flex-col md:flex-row items-center justify-between w-full">
+          <div class="md:w-5/12 text-left md:text-right px-8 order-2 md:order-1">
+            <span class="text-tertiary font-bold text-lg mb-2 block">2024 — Future</span>
+            <h4 class="font-headline-lg-mobile text-xl mb-2">Vivid Innovation</h4>
+            <p class="text-on-surface-variant">Integrating immersive 3D and AI-driven design systems into our core workflow.</p>
+          </div>
+          <div class="w-16 h-16 rounded-full bg-white border-4 border-tertiary z-10 flex items-center justify-center shadow-lg order-1 md:order-2 my-4 md:my-0">
+            <span class="material-symbols-outlined text-tertiary">bolt</span>
+          </div>
+          <div class="md:w-5/12 order-3"></div>
+        </div>
+      </div>
+    </section>
+    <!-- Portfolio Gallery with filters & lightbox -->
+    <section class="py-24 bg-white" id="work">
+      <div class="px-4 md:px-10 max-w-container-max mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+          <div>
+            <h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg mb-4">Selected Works</h2>
+            <p class="text-on-surface-variant">A collection of our most daring and successful experiments.</p>
+          </div>
+          <div class="flex flex-wrap gap-4 bg-surface-container-low p-2 rounded-full border border-outline-variant" id="filterGroup">
+            <button class="filter-btn px-6 py-2 rounded-full text-on-surface-variant font-label-bold text-label-bold transition-all active" data-filter="all">All</button>
+            <button class="filter-btn px-6 py-2 rounded-full text-on-surface-variant font-label-bold text-label-bold transition-all" data-filter="web">Web</button>
+            <button class="filter-btn px-6 py-2 rounded-full text-on-surface-variant font-label-bold text-label-bold transition-all" data-filter="branding">Branding</button>
+          </div>
+        </div>
+        <div class="masonry" id="masonryGrid">
+          <!-- items with data-category -->
+          <div class="masonry-item group relative rounded-[2rem] overflow-hidden shadow-lg hover:shadow-2xl transition-all cursor-pointer" data-category="branding">
+            <img class="w-full h-auto group-hover:scale-110 transition-transform duration-700" data-alt="Minimalist product design" src="images/image-01.jpg" />
+            <div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
+              <span class="text-white/70 font-label-bold text-xs uppercase tracking-widest mb-2">Branding</span>
+              <h4 class="text-white font-headline-lg-mobile text-lg">Pure Care Identity</h4>
+            </div>
+          </div>
+          <div class="masonry-item group relative rounded-[2rem] overflow-hidden shadow-lg hover:shadow-2xl transition-all cursor-pointer" data-category="web">
+            <img class="w-full h-auto group-hover:scale-110 transition-transform duration-700" data-alt="Modern laptop displaying bold graphic design" src="images/image-02.jpg" />
+            <div class="absolute inset-0 bg-gradient-to-t from-secondary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
+              <span class="text-white/70 font-label-bold text-xs uppercase tracking-widest mb-2">Web Experience</span>
+              <h4 class="text-white font-headline-lg-mobile text-lg">Nexus Dashboard</h4>
+            </div>
+          </div>
+          <div class="masonry-item group relative rounded-[2rem] overflow-hidden shadow-lg hover:shadow-2xl transition-all cursor-pointer" data-category="branding">
+            <img class="w-full h-auto group-hover:scale-110 transition-transform duration-700" data-alt="High-end wine bottle packaging" src="images/image-03.jpg" />
+            <div class="absolute inset-0 bg-gradient-to-t from-tertiary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
+              <span class="text-white/70 font-label-bold text-xs uppercase tracking-widest mb-2">Packaging</span>
+              <h4 class="text-white font-headline-lg-mobile text-lg">Vibrant Vines</h4>
+            </div>
+          </div>
+          <div class="masonry-item group relative rounded-[2rem] overflow-hidden shadow-lg hover:shadow-2xl transition-all cursor-pointer" data-category="branding">
+            <img class="w-full h-auto group-hover:scale-110 transition-transform duration-700" data-alt="Bold yellow and black stationery" src="images/image-04.jpg" />
+            <div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
+              <span class="text-white/70 font-label-bold text-xs uppercase tracking-widest mb-2">Visual Identity</span>
+              <h4 class="text-white font-headline-lg-mobile text-lg">Yellow Spark Stationery</h4>
+            </div>
+          </div>
+          <div class="masonry-item group relative rounded-[2rem] overflow-hidden shadow-lg hover:shadow-2xl transition-all cursor-pointer" data-category="branding">
+            <img class="w-full h-auto group-hover:scale-110 transition-transform duration-700" data-alt="Sleek soda can mockup" src="images/image-05.jpg" />
+            <div class="absolute inset-0 bg-gradient-to-t from-secondary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
+              <span class="text-white/70 font-label-bold text-xs uppercase tracking-widest mb-2">Branding</span>
+              <h4 class="text-white font-headline-lg-mobile text-lg">Zest Soda</h4>
+            </div>
+          </div>
+          <div class="masonry-item group relative rounded-[2rem] overflow-hidden shadow-lg hover:shadow-2xl transition-all cursor-pointer" data-category="web">
+            <img class="w-full h-auto group-hover:scale-110 transition-transform duration-700" data-alt="Minimalist A4 brochure" src="images/image-06.jpg" />
+            <div class="absolute inset-0 bg-gradient-to-t from-tertiary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
+              <span class="text-white/70 font-label-bold text-xs uppercase tracking-widest mb-2">Print Media</span>
+              <h4 class="text-white font-headline-lg-mobile text-lg">Portfolio Brochure</h4>
+            </div>
+          </div>
+          <div class="masonry-item group relative rounded-[2rem] overflow-hidden shadow-lg hover:shadow-2xl transition-all cursor-pointer" data-category="branding">
+            <img class="w-full h-auto group-hover:scale-110 transition-transform duration-700" data-alt="Sleek soda can mockup" src="images/image-07.jpg" />
+            <div class="absolute inset-0 bg-gradient-to-t from-secondary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
+              <span class="text-white/70 font-label-bold text-xs uppercase tracking-widest mb-2">Branding</span>
+              <h4 class="text-white font-headline-lg-mobile text-lg">Zest Soda</h4>
+            </div>
+          </div>
+          <div class="masonry-item group relative rounded-[2rem] overflow-hidden shadow-lg hover:shadow-2xl transition-all cursor-pointer" data-category="web">
+            <img class="w-full h-auto group-hover:scale-110 transition-transform duration-700" data-alt="Minimalist A4 brochure" src="images/image-08.jpg" />
+            <div class="absolute inset-0 bg-gradient-to-t from-tertiary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
+              <span class="text-white/70 font-label-bold text-xs uppercase tracking-widest mb-2">Print Media</span>
+              <h4 class="text-white font-headline-lg-mobile text-lg">Portfolio Brochure</h4>
+            </div>
+          </div>
+          <div class="masonry-item group relative rounded-[2rem] overflow-hidden shadow-lg hover:shadow-2xl transition-all cursor-pointer" data-category="web">
+            <img class="w-full h-auto group-hover:scale-110 transition-transform duration-700" data-alt="Minimalist A4 brochure" src="images/image-09.jpg" />
+            <div class="absolute inset-0 bg-gradient-to-t from-tertiary/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
+              <span class="text-white/70 font-label-bold text-xs uppercase tracking-widest mb-2">Print Media</span>
+              <h4 class="text-white font-headline-lg-mobile text-lg">Portfolio Brochure</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Contact Section (unchanged) -->
+    <section class="px-4 md:px-10 py-24" id="contact">
+      <div class="max-w-container-max mx-auto kinetic-gradient rounded-[4rem] p-12 md:p-24 text-center text-white relative overflow-hidden group">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-white/20 blur-[100px] -translate-y-1/2 translate-x-1/2"></div>
+        <div class="absolute bottom-0 left-0 w-64 h-64 bg-black/10 blur-[80px] translate-y-1/2 -translate-x-1/2"></div>
+        <h2 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg leading-tight mb-8 relative z-10">LET'S WORK <br />TOGETHER</h2>
+        <p class="font-body-lg text-body-lg max-w-xl mx-auto mb-12 opacity-90 relative z-10">Have a vision that needs more color? Let's turn your ideas into a digital masterpiece.</p>
+        <div class="relative z-10 flex flex-col md:flex-row gap-6 justify-center">
+          <a class="px-10 py-5 bg-white text-primary font-label-bold text-lg rounded-full shadow-2xl hover:scale-105 active:scale-95 transition-all" href="mailto:hello@designer.studio">Start a Project</a>
+          <a class="px-10 py-5 border-2 border-white text-white font-label-bold text-lg rounded-full hover:bg-white/10 transition-all" href="#">Follow Studio</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <!-- Footer (no background) -->
+  <footer class="w-full rounded-t-[3rem] mt-20 bg-transparent">
+    <div class="flex flex-col md:flex-row justify-between items-center gap-8 px-4 md:px-10 py-12 max-w-container-max mx-auto">
+      <div class="text-center md:text-left">
+        <span class="font-display-lg text-headline-lg text-primary mb-2 block">BENTO</span>
+        <p class="text-on-surface-variant/70 font-body-md text-body-md">© 2026 Bento Design. Free HTML Template by <a href="https://templatesjungle.com/" target="_blank">TemplatesJungle.com</a>.</p>
+      </div>
+      <div class="flex flex-wrap justify-center gap-6 md:gap-8">
+        <a class="text-on-surface-variant/70 hover:text-primary transition-colors font-body-md text-body-md hover:translate-y-[-4px] transition-transform" href="#">Dribbble</a>
+        <a class="text-on-surface-variant/70 hover:text-primary transition-colors font-body-md text-body-md hover:translate-y-[-4px] transition-transform" href="#">Behance</a>
+        <a class="text-on-surface-variant/70 hover:text-primary transition-colors font-body-md text-body-md hover:translate-y-[-4px] transition-transform" href="#">Instagram</a>
+        <a class="text-on-surface-variant/70 hover:text-primary transition-colors font-body-md text-body-md hover:translate-y-[-4px] transition-transform" href="#">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="close-btn" id="closeLightbox">✕</button>
+    <img id="lightboxImg" src="" alt="Enlarged view" />
+  </div>
+
+  <script src="assets/js/script.js"></script>
+</body>
+</html>
