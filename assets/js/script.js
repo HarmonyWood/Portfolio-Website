@@ -70,4 +70,89 @@ document.addEventListener('DOMContentLoaded', () => {
         item.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-10');
         observer.observe(item);
     });
+    
+});
+
+
+// PROJECT POPUP DATA
+const projectData = {
+    project2: [
+        {
+            title: "Project Overview",
+            description: "Introduction to my second project.",
+            image: "images/image-02.jpg"
+        },
+        {
+            title: "Concept Development",
+            description: "Exploring the visual direction.",
+            image: "images/project2-process.jpg"
+        },
+        {
+            title: "Final Designs",
+            description: "The completed project.",
+            image: "images/project2-final.jpg"
+        }
+    ]
+};
+
+let currentProject = "";
+let currentPage = 0;
+
+function openProject(project) {
+    currentProject = project;
+    currentPage = 0;
+
+    document.getElementById("project-overlay").classList.add("active");
+    document.body.style.overflow = "hidden";
+
+    showProjectPage();
+}
+
+function closeProject() {
+    document.getElementById("project-overlay").classList.remove("active");
+    document.body.style.overflow = "";
+}
+
+function changePage(direction) {
+    const pages = projectData[currentProject];
+
+    currentPage += direction;
+
+    if (currentPage < 0) currentPage = pages.length - 1;
+    if (currentPage >= pages.length) currentPage = 0;
+
+    showProjectPage();
+}
+
+function showProjectPage() {
+    const pages = projectData[currentProject];
+    const page = pages[currentPage];
+
+    document.getElementById("project-content").innerHTML = `
+        <h1>${page.title}</h1>
+        <p>${page.description}</p>
+        <img src="${page.image}" alt="${page.title}"
+             style="width:100%; height:auto; margin-top:24px;">
+    `;
+
+    document.getElementById("project-counter").textContent =
+        `${String(currentPage + 1).padStart(2, "0")} / ${String(pages.length).padStart(2, "0")}`;
+
+    document.querySelector(".project-window").scrollTop = 0;
+}
+
+// Close with Escape; navigate with arrow keys
+document.addEventListener("keydown", (event) => {
+    const overlay = document.getElementById("project-overlay");
+
+    if (!overlay.classList.contains("active")) return;
+
+    if (event.key === "Escape") closeProject();
+    if (event.key === "ArrowRight") changePage(1);
+    if (event.key === "ArrowLeft") changePage(-1);
+});
+
+// Close when clicking the dark background
+document.getElementById("project-overlay").addEventListener("click", (event) => {
+    if (event.target.id === "project-overlay") closeProject();
 });
