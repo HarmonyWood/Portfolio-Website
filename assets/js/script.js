@@ -44,8 +44,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Project presentation popup
     const projectData = {
-        'pure-care': {
-            title: 'Pure Care Identity',
+        'Global Crisis Campaign': {
+            title: 'Global Crisis Campaign',
             images: [
                 'images/Projects/Global Campaign/Global Design Cover.jpg',
                 'images/Projects/Global Campaign/fonts.jpg',
