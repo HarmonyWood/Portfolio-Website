@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Project presentation popup
     const projectData = {
-        'Global Crisis Campaign': {
+        'global-crisis-campaign': {
             title: 'Global Crisis Campaign',
             images: [
                 'images/Projects/Global Campaign/Global Design Cover.jpg',
