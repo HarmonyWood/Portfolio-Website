@@ -47,9 +47,9 @@ document.addEventListener('DOMContentLoaded', () => {
         'pure-care': {
             title: 'Pure Care Identity',
             images: [
-                'images/projects/Global Campaign/Global Design Cover.jpg',
-                'images/projects/Global Campaign/fonts.jpg',
-                'images/projects/Global Campaign/3posters.jpg'
+                'images/Projects/Global Campaign/Global Design Cover.jpg',
+                'images/Projects/Global Campaign/fonts.jpg',
+                'images/Projects/Global Campaign/3posters.jpg'
                 // Add more Pure Care image paths here
             ]
         },
