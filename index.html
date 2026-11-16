@@ -358,9 +358,7 @@
         </div>
         <div class="masonry" id="masonryGrid">
           <!-- items with data-category -->
-          <div class="masonry-item group relative rounded-[2rem] overflow-hidden shadow-lg hover:shadow-2xl transition-all" data-category="branding">
-              <a href="pdfs/flow-health.pdf" target="_blank" rel="noopener noreferrer">
-
+          <div class="masonry-item group relative rounded-[2rem] overflow-hidden shadow-lg hover:shadow-2xl transition-all" data-category="branding" data-project="pure-care">
                 <img class="w-full h-auto group-hover:scale-110 transition-transform duration-700"
                     data-alt="Minimalist product design"
                     src="images/image-01.jpg"
@@ -370,9 +368,6 @@
                   <span class="text-white/70 font-label-bold text-xs uppercase tracking-widest mb-2">Branding</span>
                   <h4 class="text-white font-headline-lg-mobile text-lg">Pure Care Identity</h4>
                 </div>
-
-              </a>
-            </div>
           </div>
           <div class="masonry-item group relative rounded-[2rem] overflow-hidden shadow-lg hover:shadow-2xl transition-all cursor-pointer" data-category="web">
             <img class="w-full h-auto group-hover:scale-110 transition-transform duration-700" data-alt="Modern laptop displaying bold graphic design" src="images/image-02.jpg" />
@@ -466,35 +461,11 @@
   
   <!-- PROJECT MODAL -->
   <div id="project-overlay" class="project-overlay">
-
     <div class="project-window">
-
-        <button class="project-close"
-                onclick="closeProject()">×</button>
-
-        <div class="project-navigation">
-            <span id="project-counter">01 / 03</span>
-
-            <div>
-                <button onclick="changePage(-1)">←</button>
-                <button onclick="changePage(1)">→</button>
-            </div>
-        </div>
-
-        <div id="project-content">
-
-            <!-- Project pages will appear here -->
-
-        </div>
+        <button class="project-close" aria-label="Close project">×</button>
+        <div id="project-content"></div>
     </div>
-  </div>
+</div>
 
-  <!-- Lightbox -->
-  <div class="lightbox" id="lightbox">
-    <button class="close-btn" id="closeLightbox">✕</button>
-    <img id="lightboxImg" src="" alt="Enlarged view" />
-  </div>
-
-  <script src="assets/js/script.js"></script>
 </body>
 </html>

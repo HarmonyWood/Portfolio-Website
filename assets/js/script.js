@@ -1,158 +1,197 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Mobile menu toggle
+    // Mobile menu
     const menuToggle = document.getElementById('menuToggle');
     const mobileMenu = document.getElementById('mobileMenu');
-    menuToggle.addEventListener('click', () => {
-        mobileMenu.classList.toggle('open');
-        const icon = menuToggle.querySelector('.material-symbols-outlined');
-        icon.textContent = mobileMenu.classList.contains('open') ? 'close' : 'menu';
-    });
 
-    // Filter functionality
+    if (menuToggle && mobileMenu) {
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+            const icon = menuToggle.querySelector('.material-symbols-outlined');
+
+            if (icon) {
+                icon.textContent = mobileMenu.classList.contains('open')
+                    ? 'close'
+                    : 'menu';
+            }
+        });
+    }
+
+    // Gallery filters
     const filterBtns = document.querySelectorAll('.filter-btn');
     const masonryItems = document.querySelectorAll('.masonry-item');
 
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            filterBtns.forEach(b => b.classList.remove('active', 'bg-primary', 'text-white'));
+            filterBtns.forEach(b =>
+                b.classList.remove('active', 'bg-primary', 'text-white')
+            );
+
             btn.classList.add('active', 'bg-primary', 'text-white');
+
             const filter = btn.dataset.filter;
+
             masonryItems.forEach(item => {
-                if (filter === 'all' || item.dataset.category === filter) {
-                    item.style.display = 'block';
-                } else {
-                    item.style.display = 'none';
-                }
+                item.style.display =
+                    filter === 'all' || item.dataset.category === filter
+                        ? 'block'
+                        : 'none';
             });
         });
     });
-    // Set initial active state
-    document.querySelector('.filter-btn[data-filter="all"]')?.classList.add('active', 'bg-primary', 'text-white');
 
-    // Lightbox
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightboxImg');
-    const closeLightbox = document.getElementById('closeLightbox');
+    document.querySelector('.filter-btn[data-filter="all"]')
+        ?.classList.add('active', 'bg-primary', 'text-white');
 
-    document.querySelectorAll('.masonry-item img').forEach(img => {
-        img.addEventListener('click', (e) => {
-            e.stopPropagation();
-            lightboxImg.src = img.src;
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
-    });
+    // Project presentation popup
+    const projectData = {
+        'pure-care': {
+            title: 'Pure Care Identity',
+            images: [
+                'images/projects/Global Design Cover.jpg',
+                'images/projects/fonts.jpg',
+                'images/projects/3posters.jpg'
+                // Add more Pure Care image paths here
+            ]
+        },
 
-    function closeLightboxFn() {
-        lightbox.classList.remove('active');
+        'nexus-dashboard': {
+            title: 'Nexus Dashboard',
+            images: [
+                'images/image-02.jpg'
+                // Add more Nexus Dashboard image paths here
+            ]
+        },
+
+        'vibrant-vines': {
+            title: 'Vibrant Vines',
+            images: [
+                'images/image-03.jpg'
+                // Add more Vibrant Vines image paths here
+            ]
+        },
+
+        'yellow-spark': {
+            title: 'Yellow Spark Stationery',
+            images: [
+                'images/image-04.jpg'
+                // Add more Yellow Spark image paths here
+            ]
+        },
+
+        'zest-soda': {
+            title: 'Zest Soda',
+            images: [
+                'images/image-05.jpg'
+                // Add more Zest Soda image paths here
+            ]
+        },
+
+        'portfolio-brochure': {
+            title: 'Portfolio Brochure',
+            images: [
+                'images/image-06.jpg'
+                // Add more brochure image paths here
+            ]
+        },
+
+        'zest-soda-2': {
+            title: 'Zest Soda',
+            images: [
+                'images/image-07.jpg'
+                // Add more Zest Soda image paths here
+            ]
+        },
+
+        'portfolio-brochure-2': {
+            title: 'Portfolio Brochure',
+            images: [
+                'images/image-08.jpg'
+                // Add more brochure image paths here
+            ]
+        },
+
+        'portfolio-brochure-3': {
+            title: 'Portfolio Brochure',
+            images: [
+                'images/image-09.jpg'
+                // Add more brochure image paths here
+            ]
+        }
+    };
+
+    const projectOverlay = document.getElementById('project-overlay');
+    const projectContent = document.getElementById('project-content');
+    const projectClose = document.querySelector('.project-close');
+
+    function openProject(projectId) {
+        const project = projectData[projectId];
+
+        if (!project || !projectOverlay || !projectContent) return;
+
+        projectContent.innerHTML = `
+            <h1>${project.title}</h1>
+            <div class="project-images">
+                ${project.images.map((image, index) => `
+                    <img src="${image}" alt="${project.title} - Image ${index + 1}">
+                `).join('')}
+            </div>
+        `;
+
+        projectOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+
+        const projectWindow = document.querySelector('.project-window');
+        if (projectWindow) projectWindow.scrollTop = 0;
+    }
+
+    function closeProject() {
+        if (!projectOverlay) return;
+
+        projectOverlay.classList.remove('active');
         document.body.style.overflow = '';
     }
 
-    closeLightbox.addEventListener('click', closeLightboxFn);
-    lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox) closeLightboxFn();
-    });
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeLightboxFn();
+    // Clicking any gallery card opens its project
+    masonryItems.forEach(item => {
+        item.addEventListener('click', event => {
+            event.preventDefault();
+
+            const projectId = item.dataset.project;
+            if (projectId) openProject(projectId);
+        });
     });
 
-    // IntersectionObserver for animations (unchanged)
-    const observerOptions = { threshold: 0.1 };
-    const observer = new IntersectionObserver((entries) => {
+    // Close button
+    projectClose?.addEventListener('click', closeProject);
+
+    // Clicking the dark background closes the popup
+    projectOverlay?.addEventListener('click', event => {
+        if (event.target === projectOverlay) closeProject();
+    });
+
+    // Escape key closes the popup
+    document.addEventListener('keydown', event => {
+        if (event.key === 'Escape') closeProject();
+    });
+
+    // Scroll animations
+    const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('opacity-100', 'translate-y-0');
                 entry.target.classList.remove('opacity-0', 'translate-y-10');
             }
         });
-    }, observerOptions);
-    document.querySelectorAll('.glass-card, .masonry-item, h1, h2').forEach(item => {
-        item.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-10');
-        observer.observe(item);
-    });
-    
-});
+    }, { threshold: 0.1 });
 
-
-// PROJECT POPUP DATA
-const projectData = {
-    project2: [
-        {
-            title: "Project Overview",
-            description: "Introduction to my second project.",
-            image: "images/image-02.jpg"
-        },
-        {
-            title: "Concept Development",
-            description: "Exploring the visual direction.",
-            image: "images/project2-process.jpg"
-        },
-        {
-            title: "Final Designs",
-            description: "The completed project.",
-            image: "images/project2-final.jpg"
-        }
-    ]
-};
-
-let currentProject = "";
-let currentPage = 0;
-
-function openProject(project) {
-    currentProject = project;
-    currentPage = 0;
-
-    document.getElementById("project-overlay").classList.add("active");
-    document.body.style.overflow = "hidden";
-
-    showProjectPage();
-}
-
-function closeProject() {
-    document.getElementById("project-overlay").classList.remove("active");
-    document.body.style.overflow = "";
-}
-
-function changePage(direction) {
-    const pages = projectData[currentProject];
-
-    currentPage += direction;
-
-    if (currentPage < 0) currentPage = pages.length - 1;
-    if (currentPage >= pages.length) currentPage = 0;
-
-    showProjectPage();
-}
-
-function showProjectPage() {
-    const pages = projectData[currentProject];
-    const page = pages[currentPage];
-
-    document.getElementById("project-content").innerHTML = `
-        <h1>${page.title}</h1>
-        <p>${page.description}</p>
-        <img src="${page.image}" alt="${page.title}"
-             style="width:100%; height:auto; margin-top:24px;">
-    `;
-
-    document.getElementById("project-counter").textContent =
-        `${String(currentPage + 1).padStart(2, "0")} / ${String(pages.length).padStart(2, "0")}`;
-
-    document.querySelector(".project-window").scrollTop = 0;
-}
-
-// Close with Escape; navigate with arrow keys
-document.addEventListener("keydown", (event) => {
-    const overlay = document.getElementById("project-overlay");
-
-    if (!overlay.classList.contains("active")) return;
-
-    if (event.key === "Escape") closeProject();
-    if (event.key === "ArrowRight") changePage(1);
-    if (event.key === "ArrowLeft") changePage(-1);
-});
-
-// Close when clicking the dark background
-document.getElementById("project-overlay").addEventListener("click", (event) => {
-    if (event.target.id === "project-overlay") closeProject();
+    document.querySelectorAll('.glass-card, .masonry-item, h1, h2')
+        .forEach(item => {
+            item.classList.add(
+                'transition-all',
+                'duration-700',
+                'opacity-0',
+                'translate-y-10'
+            );
+            observer.observe(item);
+        });
 });
