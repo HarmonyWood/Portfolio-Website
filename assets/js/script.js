@@ -47,9 +47,9 @@ document.addEventListener('DOMContentLoaded', () => {
         'pure-care': {
             title: 'Pure Care Identity',
             images: [
-                'images/projects/Global Design Cover.jpg',
-                'images/projects/fonts.jpg',
-                'images/projects/3posters.jpg'
+                'images/projects/Global Campaign/Global Design Cover.jpg',
+                'images/projects/Global Campaign/fonts.jpg',
+                'images/projects/Global Campaign/3posters.jpg'
                 // Add more Pure Care image paths here
             ]
         },
@@ -136,6 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 `).join('')}
             </div>
         `;
+        
 
         projectOverlay.classList.add('active');
         document.body.style.overflow = 'hidden';
