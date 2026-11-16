@@ -261,7 +261,10 @@
               <span class="text-primary font-bold text-xs tracking-widest mb-4">UX DESIGN</span>
               <h4 class="font-headline-lg text-headline-lg-mobile font-extrabold mb-4">Flow Health Platform</h4>
               <p class="text-on-surface-variant text-sm mb-6">Redefining health tracking with kinetic motion principles and approachable precision.</p>
-              <button class="w-fit bg-on-background text-background px-5 py-2 rounded-lg font-label-bold text-label-bold hover:bg-primary transition-colors">Explore Case</button>
+              <button onclick="openProject('project2')"
+                class="w-fit bg-on-background text-background px-5 py-2 rounded-lg font-label-bold text-label-bold hover:bg-primary transition-colors">
+                Explore Case
+              </button>
             </div>
             <div class="w-full md:w-1/2 relative overflow-hidden">
               <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Medical-grade digital interface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUR-yvmWZITDJRsRiUuYYSinlvtmzh4ieOEGKGn1tNNNOzbaQ_0gyZJeQY8Jx3-1zb1FcOkZDKEB9QXCrcBaZJIb_AxOVb_RUUgdJIYJpX2V8QYqs2a0EOx59JqG2N-z0HrguZQagFens4KMjIQwkDsWK0NLv-CHEmIyXtpAWbgoLUFFdKQ3naAzJS5Z4pYzCUu_d2-nxPCZ2Y6fFTf4ojkzDAjgQUR6z-eH3lwUtNsXjM14u6Fq8cuXgXO_7p4Qjrwsjdv8uI7OmF" />
@@ -442,6 +445,32 @@
       </div>
     </div>
   </footer>
+
+  
+  <!-- PROJECT MODAL -->
+  <div id="project-overlay" class="project-overlay">
+
+    <div class="project-window">
+
+        <button class="project-close"
+                onclick="closeProject()">×</button>
+
+        <div class="project-navigation">
+            <span id="project-counter">01 / 03</span>
+
+            <div>
+                <button onclick="changePage(-1)">←</button>
+                <button onclick="changePage(1)">→</button>
+            </div>
+        </div>
+
+        <div id="project-content">
+
+            <!-- Project pages will appear here -->
+
+        </div>
+    </div>
+  </div>
 
   <!-- Lightbox -->
   <div class="lightbox" id="lightbox">
