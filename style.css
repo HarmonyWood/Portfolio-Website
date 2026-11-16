@@ -262,22 +262,3 @@ footer {
     }
 }
 
-/* TEMPORARY POPUP TEST */
-.project-overlay.active {
-    display: flex !important;
-    position: fixed !important;
-    inset: 0 !important;
-    z-index: 99999 !important;
-    background: rgba(0, 0, 0, 0.9) !important;
-    justify-content: center !important;
-    align-items: center !important;
-}
-
-.project-window {
-    background: #171717 !important;
-    color: white !important;
-    width: 90% !important;
-    height: 90% !important;
-    overflow-y: auto !important;
-    padding: 30px !important;
-}
